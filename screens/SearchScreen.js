@@ -1,76 +1,41 @@
 import React, {Component} from 'react';
 import {FlatList, StyleSheet, Text, TextInput, View} from 'react-native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// import TabScreen from '../navigations/tabScreen';
+import Tab1 from '../navigations/tabs/tab1';
+import Tab2 from '../navigations/tabs/tab2';
+import Tab3 from '../navigations/tabs/tab3';
 
-export default class SearchScreen extends Component {
+const Tab = createMaterialTopTabNavigator();
 
-    state = {
-      herb: []
-    }
-
-    fetchData= async()=>{
-      const response = await fetch('http://192.168.100.27:8080/connect.php');
-      const detail = await response.json();
-      this.setState({herb: detail, filterHerb: detail});
-    }
-    componentDidMount(){
-      this.fetchData();
-    }
-
-    onChangeText(text){
-        // console.log('texChanged', text)
-        let filterArray = this.state.filterHerb
-        let searchResult = filterArray.filter(leaf => 
-          leaf.name.includes(text)
-        )
-        this.setState({herb: searchResult})
-
-    }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.txt}>LEAF HEB</Text>
-        </View>
-        <View style={{backgroundColor:'#c0e7cd'}}>
-          <TextInput
-            placeholder="Search"
-            style={styles.txtinput}
-            onChangeText={text => this.onChangeText(text)}
-          />
-          <Icon style={styles.icon} name="search" size={20} color="#ddd" />
-        </View>
-        {/* <TabScreen/> */}
-        <FlatList
-         style={{backgroundColor:'#c0e7cd'}}
-         data={this.state.herb}
-         renderItem={({item}) => (
-           <View style={styles.list}>
-             <Text style={styles.txtlist}>{item.name}</Text>
-             <Text style={{color:'#fff'}}>ชื่อสามัญ: {item.common_name}</Text>
-             <Text style={{color:'#fbfbfb'}}>ชื่อวิทยาศาสตร์: {item.science_name}</Text>
-
-           </View>
-         )}
-        />
+const SearchScreen = () => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.txt}>LEAF HEB</Text>
       </View>
-    );
-  }
-}
+      <Tab.Navigator>
+        <Tab.Screen name="ชื่อ" component={Tab1} />
+        <Tab.Screen name="สรรพคุณ" component={Tab2} />
+        <Tab.Screen name="ประเภท" component={Tab3} />
+      </Tab.Navigator>
+    </View>
+  );
+};
+
+export default SearchScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#00a352'
+    backgroundColor: '#00a352',
   },
 
   txt: {
     marginTop: 10,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#fff',
   },
   header: {
     borderBottomWidth: 1,
@@ -103,7 +68,7 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderWidth: 1,
     padding: 10,
-    backgroundColor: '#00a352'
+    backgroundColor: '#00a352',
   },
 
   txtlist: {
@@ -111,6 +76,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
     color: '#fff',
-    fontFamily: "K2D-Light"
+    fontFamily: 'K2D-Light',
   },
 });
