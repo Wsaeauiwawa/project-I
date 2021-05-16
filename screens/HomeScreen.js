@@ -35,20 +35,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#8fcbbc'
     },
-    // header: {
-    //     flex: 1,
-    //     justifyContent: 'center',
-    //     alignItems: 'center'
-    // },
-    // footer: {
-    //     flex: 1,
-    //     backgroundColor: '#fff',
-    //     borderTopLeftRadius: 30,
-    //     borderTopRightRadius: 30,
-    //     paddingVertical: 50,
-    //     paddingHorizontal: 30
-    // },
    
 });

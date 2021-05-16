@@ -16,13 +16,13 @@ const Tabs = () => {
         showLabel: false,
         style: {
           position: 'absolute',
-          bottom: 25,
-          left: 20,
-          right: 20,
+          bottom: 20,
+          left: 15,
+          right: 15,
           elevation: 0,
           backgroundColor: '#ffffff',
           borderRadius: 15,
-          height: 90,
+          height: 70,
           ...styles.shadow,
         },
       }}>
