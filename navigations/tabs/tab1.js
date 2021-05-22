@@ -6,35 +6,33 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image
+  Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Tab1 extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      herb: []
-    }
-  }
-  renderItem = () => {
-    
+      herb: [],
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // const url :'http://192.168.100.27:8080/connect.php'
-    const url = 'http://192.168.100.27:3000/herb'
+    const url = 'http://192.168.100.27:3000/herb';
 
     fetch(url)
-    .then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({
-        herb: responseJson.detail, filterHerb:responseJson.detail
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          herb: responseJson.detail,
+          filterHerb: responseJson.detail,
+        });
       })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .catch(error => {
+        console.log(error);
+      });
   }
   onChangeText(text) {
     // console.log('texChanged', text)
@@ -58,9 +56,12 @@ export default class Tab1 extends Component {
           style={{backgroundColor: '#c0e7cd'}}
           data={this.state.herb}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() =>{this.props.navigation.navigate('DetailScreen')}}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('DetailScreen');
+              }}>
               <View style={styles.list}>
-                <Image source={{uri: item.image}}/>
+                <Image style={{width:80, height:80, marginBottom:3}} source={{uri: item.image}} />
                 <Text style={styles.txtlist}>{item.name}</Text>
                 <Text style={{color: '#fff'}}>
                   ชื่อสามัญ: {item.common_name}
@@ -68,7 +69,7 @@ export default class Tab1 extends Component {
                 <Text style={{color: '#fbfbfb'}}>
                   ชื่อวิทยาศาสตร์: {item.science_name}
                 </Text>
-                
+
                 {/* <Text style={{color: '#fbfbfb'}}>
                   URL: {item.URL}
                 </Text> */}
@@ -125,6 +126,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     backgroundColor: '#00a352',
+    // flex: 1,
+    // flexDirection: 'row'
   },
 
   txtlist: {
