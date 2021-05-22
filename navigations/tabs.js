@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import BookmarkScreen from '../screens/BookmarkScreen';
 import ContactScreen from '../screens/ContactScreen';
+import DetailScreen from '../screens/DetailScreen';
 
 const Tab = createBottomTabNavigator();
 
