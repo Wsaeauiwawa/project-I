@@ -5,6 +5,8 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Button,
+  Linking
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -17,6 +19,7 @@ class tab2 extends Component {
       common_name: '',
       science_name: '',
       local_name: '',
+      URL: '',
     };
   }
 
@@ -26,7 +29,8 @@ class tab2 extends Component {
     if (FindData.length == 0) {
       alert('Please fill in...');
     } else {
-      var SearchAPIURL = 'http://172.20.10.4:8080/herb/search.php';
+      // var SearchAPIURL = 'http://172.20.10.4:8080/herb/search.php';
+      var SearchAPIURL = 'http://192.168.100.27:8080/herb/search.php';
 
       var header = {
         Accept: 'application/json',
@@ -46,6 +50,7 @@ class tab2 extends Component {
           this.setState({common_name: response[0].common_name});
           this.setState({science_name: response[0].science_name});
           this.setState({local_name: response[0].local_name});
+          this.setState({URL: response[0].URL});
         })
         .catch(error => {
           alert(error);
@@ -54,6 +59,7 @@ class tab2 extends Component {
     }
   };
   render() {
+
     return (
       <View style={styles.container}>
         <View style={{backgroundColor: '#c0e7cd'}}>
@@ -67,10 +73,16 @@ class tab2 extends Component {
         <TouchableOpacity onPress={this.SearchRecord} style={styles.area}>
           <Text style={styles.paragraph}>Search</Text>
         </TouchableOpacity>
-        <TextInput style={styles.txtStyle} value={this.state.name} />
-        <TextInput style={styles.txtStyle} value={this.state.common_name} />
-        <TextInput style={styles.txtStyle} value={this.state.science_name} />
-        <TextInput style={styles.txtStyle} value={this.state.local_name} />
+        <View style={styles.list}>
+          <Text style={styles.txtlist}>{this.state.name}</Text>
+          <Text style={{color: '#000'}}>ชื่อสามัญ: {this.state.common_name}</Text>
+          <Text style={{color: '#000'}}>ชื่อวิทยาศาสตร์: {this.state.common_name}</Text>
+          <Text style={{color: '#000'}}>ชื่อท้องถิ่น: {this.state.local_name}</Text>
+          {/* <Text style={{color: '#000'}}>อ่านเพิ่มเติม: {this.state.URL}</Text> */}
+          {/* <TouchableOpacity onPress={this.state.URL}>
+            <Text style={{color: '#C0392B'}}>อ่านเพิ่มเติม</Text>
+          </TouchableOpacity> */}
+        </View>
       </View>
     );
   }
@@ -118,17 +130,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 5,
     borderRadius: 10,
-    borderColor: '#fff',
+    borderColor: '#000',
     borderWidth: 1,
     padding: 10,
-    backgroundColor: '#00a352',
+    backgroundColor: '#fff',
+    marginTop: 20,
   },
 
   txtlist: {
     fontSize: 15,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: '#fff',
+    color: '#000',
     fontFamily: 'K2D-Light',
   },
   paragraph: {

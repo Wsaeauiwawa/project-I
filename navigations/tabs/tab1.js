@@ -19,8 +19,8 @@ export default class Tab1 extends Component {
   }
 
   componentDidMount() {
-    // const url :'http://192.168.100.27:8080/connect.php'
-    const url = 'http://172.20.10.4:3000/herb';
+    const url = 'http://192.168.100.27:3000/herb';
+    // const url = 'http://172.20.10.4:3000/herb';
 
     fetch(url)
       .then(response => response.json())

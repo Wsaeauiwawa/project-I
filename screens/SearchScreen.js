@@ -12,12 +12,12 @@ const SearchScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.txt}>LEAF HEB</Text>
+        <Text style={styles.txt}>LEAF HERB</Text>
       </View>
       <Tab.Navigator>
         <Tab.Screen name="ชื่อ" component={Tab1} />
-        <Tab.Screen name="สรรพคุณ" component={Tab2} />
-        <Tab.Screen name="ประเภท" component={Tab3} />
+        <Tab.Screen name="ค้นหา" component={Tab2} />
+        {/* <Tab.Screen name="ประเภท" component={Tab3} /> */}
       </Tab.Navigator>
     </View>
   );
