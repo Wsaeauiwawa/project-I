@@ -5,8 +5,8 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Button,
-  Linking
+  Image,
+  Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -20,6 +20,7 @@ class tab2 extends Component {
       science_name: '',
       local_name: '',
       URL: '',
+      // image: '',
     };
   }
 
@@ -29,8 +30,8 @@ class tab2 extends Component {
     if (FindData.length == 0) {
       alert('Please fill in...');
     } else {
-      // var SearchAPIURL = 'http://172.20.10.4:8080/herb/search.php';
-      var SearchAPIURL = 'http://192.168.100.27:8080/herb/search.php';
+      var SearchAPIURL = 'http://172.20.10.4:8080/herb/search.php';
+      // var SearchAPIURL = 'http://192.168.100.27:8080/herb/search.php';
 
       var header = {
         Accept: 'application/json',
@@ -51,6 +52,7 @@ class tab2 extends Component {
           this.setState({science_name: response[0].science_name});
           this.setState({local_name: response[0].local_name});
           this.setState({URL: response[0].URL});
+          this.setState({image: response[0].image});
         })
         .catch(error => {
           alert(error);
@@ -59,7 +61,6 @@ class tab2 extends Component {
     }
   };
   render() {
-
     return (
       <View style={styles.container}>
         <View style={{backgroundColor: '#c0e7cd'}}>
@@ -74,10 +75,20 @@ class tab2 extends Component {
           <Text style={styles.paragraph}>Search</Text>
         </TouchableOpacity>
         <View style={styles.list}>
+          {/* <Image
+            style={{width: 80, height: 80, marginBottom: 3}}
+            source={{uri: this.state.image}}
+          /> */}
           <Text style={styles.txtlist}>{this.state.name}</Text>
-          <Text style={{color: '#000'}}>ชื่อสามัญ: {this.state.common_name}</Text>
-          <Text style={{color: '#000'}}>ชื่อวิทยาศาสตร์: {this.state.common_name}</Text>
-          <Text style={{color: '#000'}}>ชื่อท้องถิ่น: {this.state.local_name}</Text>
+          <Text style={{color: '#000'}}>
+            ชื่อสามัญ: {this.state.common_name}
+          </Text>
+          <Text style={{color: '#000'}}>
+            ชื่อวิทยาศาสตร์: {this.state.common_name}
+          </Text>
+          <Text style={{color: '#000'}}>
+            ชื่อท้องถิ่น: {this.state.local_name}
+          </Text>
           {/* <Text style={{color: '#000'}}>อ่านเพิ่มเติม: {this.state.URL}</Text> */}
           {/* <TouchableOpacity onPress={this.state.URL}>
             <Text style={{color: '#C0392B'}}>อ่านเพิ่มเติม</Text>
